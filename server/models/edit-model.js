@@ -4,6 +4,6 @@ const editUserSchema = new mongoose.Schema({
   firstName: { type: String, required: true }
 })
 
-const EditUser = mongoose.model('editUser', editUserSchema)
+const EditUser = mongoose.model('user', editUserSchema)
 
 module.exports = EditUser
