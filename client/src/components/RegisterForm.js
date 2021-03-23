@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import AuthContext from '../context/AuthContext';
+import { useHistory } from 'react-router';
 
 function RegisterForm() {
 
@@ -17,6 +19,9 @@ function RegisterForm() {
   const [streetName, setStreetName] = useState('');
   const [number, setNumber] = useState('');
   const [complement, setcCmplement] = useState('');
+
+  const getLoggedIn = useContext(AuthContext)
+  const oldUrl = useHistory()
 
   async function register(e) {
     e.preventDefault()
@@ -40,7 +45,8 @@ function RegisterForm() {
       }
 
       await axios.post('http://localhost:5001/auth/', registerData)
-
+      await getLoggedIn.getAuth()
+      oldUrl.push('/log-in')
     } catch(err) {
       console.error(err)
     }
