@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'; 
 import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
-import NavBar from './components/Navbar';
 import RegisterForm from './components/RegisterForm';
 import Users from './components/Users';
 import AuthContext from './context/AuthContext';
@@ -12,7 +11,6 @@ function Router() {
   console.log(authControl.logIn)
   return (
   <BrowserRouter>
-    <NavBar />
     <Switch>
       {authControl.logIn === false && (
         <>

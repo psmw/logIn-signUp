@@ -62,11 +62,11 @@ function LogIn() {
 
   return (
     <div className={classes.root}>
-      <Grid container> 
+      <Grid container spacing={2}> 
         <Hidden xsDown>          
           <Grid item sm={2} md={4} />
         </Hidden>
-        <Grid item xs={12} sm={8} md={4} spacing={2}>
+        <Grid item xs={12} sm={8} md={4}>
           <div className={classes.formCard}>            
             <Typography variant='h4' align='center'>Olá visitante</Typography>
             <div className={classes.formHolder}>
