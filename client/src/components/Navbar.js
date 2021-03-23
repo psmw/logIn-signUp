@@ -6,11 +6,10 @@ function NavBar() {
   const logControl = useContext(AuthContext)
   return (
     <>
-      <Link to='/'>Home</Link>
       {logControl.logIn === false && (
         <>
           <Link to='/register'>register</Link> 
-          <Link to='/log-in'>log in</Link>
+          <Link to='/'>log in</Link>
         </>
       )} 
       {logControl.logIn === true && <Link to='/user'>user</Link>}    

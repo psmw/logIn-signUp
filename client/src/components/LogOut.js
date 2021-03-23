@@ -9,7 +9,7 @@ function LogOut() {
   async function LogOutFunction() {
     await axios.get('http://localhost:5001/auth/logout')
     await getLoggedIn.getAuth()
-    oldUrl.push('/log-in')
+    oldUrl.push('/')
   }
   return (
     <button onClick={LogOutFunction}>

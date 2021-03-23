@@ -4,6 +4,7 @@ import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
 import NavBar from './components/Navbar';
 import RegisterForm from './components/RegisterForm';
+import Users from './components/Users';
 import AuthContext from './context/AuthContext';
 
 function Router() {
@@ -13,15 +14,12 @@ function Router() {
   <BrowserRouter>
     <NavBar />
     <Switch>
-      <Route exact path='/'>
-        <div>Home</div>
-      </Route>
       {authControl.logIn === false && (
         <>
           <Route path='/register'>
             <RegisterForm />
           </Route>
-          <Route path='/log-in'>
+          <Route exact path='/'>
             <LogIn />
           </Route>                 
         </>
@@ -29,7 +27,7 @@ function Router() {
       {authControl.logIn === true && (
         <>
           <Route path='/user'>
-            <div>user</div>
+            <Users />
             <LogOut />
           </Route>      
         </>

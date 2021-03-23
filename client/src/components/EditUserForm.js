@@ -1,17 +1,10 @@
-import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import AuthContext from '../context/AuthContext';
-import { useHistory } from 'react-router';
+import React, { useState } from 'react';
 
-function RegisterForm() {
+function EditUser() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordVerification, setPasswordVerification] = useState('');
   const [firstName, setFirstName] = useState('');
   const [surName, setSurName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [pis, setPis] = useState('');
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
@@ -20,34 +13,15 @@ function RegisterForm() {
   const [number, setNumber] = useState('');
   const [complement, setcCmplement] = useState('');
 
-  const getLoggedIn = useContext(AuthContext)
-  const oldUrl = useHistory()
-
-  async function register(e) {
+  async function saveEdit(e) {
     e.preventDefault()
 
     try {
-      const registerData = {
-        email, 
-	      password, 
-	      passwordVerification, 
-	      firstName, 
-	      surName, 
-	      cpf, 
-	      pis, 
-	      country, 
-	      state, 
-	      city, 
-	      cep, 
-	      streetName, 
-	      number, 
-	      complement, 
+      const userData = {
+        firstName
       }
-
-      await axios.post('http://localhost:5001/auth/', registerData)
-      await getLoggedIn.getAuth()
-      oldUrl.push('/')
-    } catch(err) {
+      await axios.post('http://localhost:5001/edit/', userData)
+    } catch (err) {
       console.error(err)
     }
   }
@@ -55,25 +29,7 @@ function RegisterForm() {
   return (
     <div>
       <h3>Registro de usuário</h3>
-      <form onSubmit={register} >
-        <input 
-          type='email' 
-          placeholder='e-mail' 
-          onChange={(e) => setEmail(e.target.value)} 
-          value={email}  
-        />
-        <input 
-          type='password' 
-          placeholder='digite sua senha'
-           onChange={(e) => setPassword(e.target.value)} 
-            value={password} 
-          />
-        <input 
-          type='password' 
-          placeholder='confirme sua senha' 
-          onChange={(e) => setPasswordVerification(e.target.value)} 
-          value={passwordVerification}  
-        />
+      <form onSubmit={saveEdit} >
         <input 
           type='text' 
           placeholder='Nome' 
@@ -85,18 +41,6 @@ function RegisterForm() {
           placeholder='sobrenome' 
           onChange={(e) => setSurName(e.target.value)} 
           value={surName}  
-        />
-        <input 
-          type='number' 
-          placeholder='cpf' 
-          onChange={(e) => setCpf(e.target.value)} 
-          value={cpf}  
-        />
-        <input 
-          type='number' 
-          placeholder='pis' 
-          onChange={(e) => setPis(e.target.value)} 
-          value={pis}  
         />
         <input 
           type='text' 
@@ -140,10 +84,11 @@ function RegisterForm() {
           onChange={(e) => setcCmplement(e.target.value)} 
           value={complement}  
         />
-        <button type='submit'>Registrar</button>
+        <button type='submit'>Salvar alterações</button>
+        <button type='submit'>Apagar usuário</button>
       </form>
-    </div>  
+    </div>
   );
 }
 
-export default RegisterForm;
+export default EditUser; 
