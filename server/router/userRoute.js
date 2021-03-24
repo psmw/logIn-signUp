@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/user-model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth')
 
 // sign up
 
@@ -158,6 +159,18 @@ router.get('/loggedIn', (req, res) => {
     res.send(true)
   } catch (err) {
     res.json(false)
+  }
+})
+
+// deletar a conta
+
+router.delete('/delete', auth, async (req, res) => {
+  try {
+    const deleteUser = await User.findByIdAndDelete(req.User)
+    res.json(deleteUser)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send()
   }
 })
 

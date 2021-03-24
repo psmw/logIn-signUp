@@ -34,4 +34,3 @@ mongoose.connect(process.env.DB_CONNECTION_SETUP, {
 // routes
 
 app.use('/auth', require('./router/userRoute'))
-app.use('/edit', require('./router/editRouter'))

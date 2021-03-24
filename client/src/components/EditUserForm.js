@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import DeleteUser from './DeleteUser';
 import { makeStyles, Grid, Typography, Hidden } from '@material-ui/core';
 
 const useStyle = makeStyles((theme) => ({
@@ -52,13 +53,13 @@ function EditUser() {
       const userData = {
         firstName
       }
-      await axios.post('http://localhost:5001/edit/', userData)
+      await axios.post('http://localhost:5001/auth/', userData)
     } catch (err) {
       console.error(err)
     }
   }
 
-  return (
+  return (    
     <div className={classes.root}>
       <Grid container>
         <Hidden xsDown>          
@@ -66,7 +67,7 @@ function EditUser() {
         </Hidden>
         <Grid item xs={12} sm={8} md={4}>
           <div className={classes.formCard}>
-            <Typography variant='h4' align='center'>Editar usuário</Typography>
+            <Typography variant='h4' align='center'>Olá {firstName}</Typography>
             <div className={classes.formHolder}>
               <form onSubmit={saveEdit} className={classes.logInForm}>
                 <input 
@@ -133,7 +134,7 @@ function EditUser() {
                   className={classes.formMargin}
                 />
                 <button type='submit' className={classes.formMargin}>Salvar alterações</button>
-                <button type='submit'>Apagar usuário</button>
+                <DeleteUser />
               </form>
             </div>
           </div>
